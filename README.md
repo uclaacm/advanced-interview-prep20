@@ -33,13 +33,15 @@ public:
         //initialize two pointers start and end that point to the start and end of the list.
         int start = 0;
         int end = height.size() - 1;
-        //max_water is the value we are optimizing for and the termination codition is when start equals end.
+        //max_water is the value we are optimizing for and 
+        //the termination codition is when start equals end.
         int max_water = 0;
         while(start < end){
             //calculate the amount of water that the two walls can hold between them.
             int water_amount = min(*(height.begin() + start), *(height.begin() + end))*(end - start);
             max_water = max(max_water, water_amount);
-            //carefully increment start or decrement end (the wall with lesser height) in the hope of leading to a higher wall.
+            //carefully increment start or decrement end (the wall with lesser height) 
+            //in the hope of leading to a higher wall.
             if(*(height.begin() + start) > *(height.begin() + end)){
                 end -= 1;
             }else{
