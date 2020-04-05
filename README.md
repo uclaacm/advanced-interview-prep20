@@ -24,6 +24,7 @@ technical skills, this is a great place to get started. If you have no idea abou
 <p>Often, we come across problems that may look like an O(N^2) problem when bruteforcing but would make the interviewer unhappy. As the name suggests, it involves two pointer, one that starts at the beginning and one that starts in the end. In each iteration, we move the beggining pointer or the end pointer by some number of indices while searching for an optimal value or finding a maximum/minimum. Consider Leetcode problem <a href="https://leetcode.com/problems/container-with-most-water/">11</a>.</p>
 <center><img src="images/pr11.png"/></center>
 <p>The main idea behind solving this problem is to optimize on the maximum amount of water that can be stored in a container. The amount of water in a container is given by height x width where the height is the minimum of the two walls and the width is the distance between the two walls. How do we keep track of two walls? Simple, two pointers. How do we advance the pointers? we increment the start pointer or decrement the end pointer only if the wall that is pointed to by that pointer is shorter than the wall pointed to by the other. We do this in the hope of finding a higher wall so that we can store more water! We stop once the two pointers meet because we don't want to go out of bounds or double count. In this we solved a potentially O(N^2) time problem in O(N).</p>
+<br />
 ```
 class Solution {
 public:
