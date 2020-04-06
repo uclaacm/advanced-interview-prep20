@@ -18,7 +18,7 @@ technical skills, this is a great place to get started. If you have no idea abou
 
 # Arrays <a name="arrays"></a>
 <p>Array questions, often interchangeable with string questions are some of the most common questions asked during technical interviews. As we have learned previously, what makes arrays so popular is their simplicity in storing data. So when dealing with arrays you want to deal with an algorithm that is in the O(N) or O(log(N)) ballpark. This is achieved by the constant time access with indexing. When required to sort, we would be dealing with an O(NlogN) algorithm. We will deal with sorting in the following section. For now, let us take a look at some vanilla array problems.</p>
-<img src="images/arraymeme.PNG" width="50%" height="50%">
+<img src="images/arraymeme.jpg" width="50%" height="50%">
 
 ## Two pointers approach
 <p>Often, we come across problems that may look like an O(N^2) problem when brute-forcing but would make the interviewer unhappy. As the name suggests, it involves two pointers, one that starts at the beginning and one that starts in the end. In each iteration, we move the beginning pointer or the end pointer by some number of indices while searching for an optimal value or finding a maximum/minimum. Consider Leetcode problem <a href="https://leetcode.com/problems/container-with-most-water/">11</a>.</p>
