@@ -102,3 +102,78 @@ public:
     }
 };
 ```
+## Searching
+<p>Often, we are presented with one or more sorted arrays or semi-sorted arrays. When the interviewer provides you with this information, you will need to take advantage of it to reduce the time complexity of the solution. The best way to take advantage of this is by using a binary search or some equivalent that yields an O(log(N)) time complexity.</p>
+<p>The solution to a problem may not always be direct binary search. You may have to handle a few extra cases or edge cases but the solution is almost always "Binary Search-esque." For example, consider Leetcode problem <a href="https://leetcode.com/problems/search-in-rotated-sorted-array/">33</a>.</p>
+
+<img src="images/p33.PNG">
+
+<p>What would the brute force be in this case? Well, simply searching each element one by one in a simple for loop. But we didn't take advantage of the fact that it is rotated sorted, i.e. the array can be divided into two sorted parts. Now if we want logarithmic time, we could simply perform a binary search on each part of the list to find the target element. So the key to the solution of the problem is finding the pivot i.e. the smallest element (which is also the start of the un-rotated list). We find the pivot using a modified version of binary search.</p>
+
+```cpp
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        int start = 0;
+        int end = nums.size() - 1;
+        int pivot_index = 0;
+
+        //first we attempt to find the pivot if there exists any.
+        while(start <= end){
+            int mid = (start + end) / 2;
+            if(mid == 0 || mid == nums.size() - 1){
+                start = 0;
+                end = nums.size() - 1;
+                break;
+            }else if(nums[mid] > nums[mid+1]){
+                if(target <= nums[mid] && target >= nums[0]){
+                    start = 0;
+                    end = mid;
+                }else{
+                    start = mid + 1;
+                    end = nums.size() - 1;
+                }
+                break;
+            }else if(nums[mid] < nums[mid-1]){
+                if(target <= nums[mid-1] && target >= nums[0]){
+                    start = 0;
+                    end = mid-1;
+                }else{
+                    start = mid;
+                    end = nums.size() - 1;
+                }
+                break;
+            }else{
+                if(nums[mid] > nums[start]){
+                    start = mid + 1;
+                }else{
+                    end = mid - 1;
+                }
+            }
+        } 
+        //perform binary search
+        if(start >= end){
+            start = 0;
+            end = nums.size() - 1;
+        }
+
+        //Now that we know which sorted part of the array consists of the element, we perform binary search on that part.
+        while(start <= end){
+            if(nums[start] == target){
+                return start;
+            }else if(nums[end] == target){
+                return end;
+            }
+            int mid = (start + end) / 2;
+            if(nums[mid] == target){
+                return mid;
+            }else if (nums[mid] < target){
+                start = mid + 1;
+            }else{
+                end = mid - 1;
+            }
+        }
+        return -1;
+    }
+};
+```
