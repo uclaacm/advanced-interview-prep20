@@ -182,7 +182,7 @@ public:
     }
 };
 ```
-## Logical Problems
+## Logical Problems :lock:
 <p>Some array problems are simply math-based problems where we have to summon our math/logic skills. Sadly, there is no definite approach that we can use to solve such problems. The only way that we stand a good chance at solving such problems is practice! Consider Leetcode problem <a href="https://leetcode.com/problems/rotate-image/">48</a>.</p>
 
 <img href="images/p48.PNG" width="50%" height="50%">
@@ -205,6 +205,6 @@ public:
 };
 ```
 ## Practice :muscle:
-<p>These are some of the techniques that we use when solving array problems. While most of these techniques seem rather abstract, knowing them will allow us to nudge ourselves towards the right solution. Now that you have been equipped with these techniques, attempt to solve the following problems. If you get stuck, don't worry, we've got your back. Feel free to peek at the solution in the solutions directory in this repository or if you don't want to, zoom into office hours!</p>
-* <a href="https://leetcode.com/problems/first-missing-positive/">Leetcode Problem 41: First Missing Number</a>
-* <a href="https://leetcode.com/problems/trapping-rain-water/">Leetcode Problem 42: Trapping Rain Water</a>
+<p>These are some of the techniques that we use when solving array problems. While most of these techniques seem rather abstract, knowing them will allow us to nudge ourselves towards the right solution. Now that you have been equipped with these techniques, attempt to solve the following problems. If you get stuck, don't worry, we've got your back. Feel free to peek at the solution in the solutions directory in this repository or if you don't want to, zoom into office hours!</p><br>
+- <a href="https://leetcode.com/problems/first-missing-positive/">Leetcode Problem 41: First Missing Number</a>
+- <a href="https://leetcode.com/problems/trapping-rain-water/">Leetcode Problem 42: Trapping Rain Water</a>
