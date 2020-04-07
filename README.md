@@ -206,5 +206,5 @@ public:
 ```
 ## Practice :muscle:
 <p>These are some of the techniques that we use when solving array problems. While most of these techniques seem rather abstract, knowing them will allow us to nudge ourselves towards the right solution. Now that you have been equipped with these techniques, attempt to solve the following problems. If you get stuck, don't worry, we've got your back. Feel free to peek at the solution in the solutions directory in this repository or if you don't want to, zoom into office hours!</p><br>
-- <a href="https://leetcode.com/problems/first-missing-positive/">Leetcode Problem 41: First Missing Number</a>
-- <a href="https://leetcode.com/problems/trapping-rain-water/">Leetcode Problem 42: Trapping Rain Water</a>
+1. <a href="https://leetcode.com/problems/first-missing-positive/">Leetcode Problem 41: First Missing Number</a>
+2. <a href="https://leetcode.com/problems/trapping-rain-water/">Leetcode Problem 42: Trapping Rain Water</a>
