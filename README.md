@@ -185,7 +185,7 @@ public:
 ## Logical Problems :lock:
 <p>Some array problems are simply math-based problems where we have to summon our math/logic skills. Sadly, there is no definite approach that we can use to solve such problems. The only way that we stand a good chance at solving such problems is solving more problems! Consider Leetcode problem <a href="https://leetcode.com/problems/rotate-image/">48</a>.</p>
 
-<p align="center"><img href="images/p48.PNG" width="50%" height="50%"></p>
+<p align="center"><img src="images/p48.PNG" width="50%" height="50%"></p>
 
 <p>At first glance, this problem seems rather simple. You pull out a pen and work through an example, you see a definite pattern where each element, on rotation, is taking the place of another element which is located at a definite number of places away in the matrix. However, while it seems like a definite pattern, coming up with an element-wise algorithm is tedious. Moreover, since we have to do it in place, swapping two elements will make us lose track of the element that already exists at the position we are swapping into. This is where we need to apply some kind of logic to the problem. We do this by breaking down the rotation into two predictable operations, i.e. a reflection about the middle row followed by a reflection about the diagonal. Note that swapping is not a problem here because when we swap, both elements are being swapped into their final positions.</p>
 
