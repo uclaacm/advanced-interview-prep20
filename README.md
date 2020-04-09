@@ -18,7 +18,7 @@ technical skills, this is a great place to get started. If you have no idea abou
 
 # Arrays <a name="arrays"></a> :dolphin:
 <p>Array questions, often interchangeable with string questions are some of the most common questions asked during technical interviews. As we have learned previously, what makes arrays so popular is their simplicity in storing data. When dealing with arrays you want to deal with an algorithm that is in the O(N) or O(log(N)) ballpark. This is achieved by the constant time access with indexing. When required to sort, we would be dealing with an O(NlogN) algorithm. Let us take a look at some vanilla array problems.</p>
-<img src="images/arraymeme.jpg" width="50%" height="50%">
+<img src="images/arraymeme.jpg" width="50%" height="50%" align="center">
 
 ## Two pointers approach :earth_asia:
 <p>Often, we come across problems that may have an O(N^2) solution on first glance. The two pointer approach allows us to solve such problems in O(N) or 
