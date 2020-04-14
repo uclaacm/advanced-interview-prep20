@@ -211,3 +211,39 @@ public:
 3. <a href="https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/">Leetcode Problem 448: Find All Numbers Disappeared In An Array</a><br>
 4. <a href="https://leetcode.com/problems/beautiful-arrangement-ii/">Leetcode Problem 667: Beautiful Arrangement ii</a><br>
 5. <a href="https://leetcode.com/problems/fruit-into-baskets/">Leetcode Problem 904: Fruit Into Baskets</a>
+
+# Strings <a name="strings"></a> :dolphin:
+<p>Array problems are often interchangable with string problems. After all, a string is an array of characters! When solving string problems, we might have to employ the two pointers approach that we discussed and sometimes even sorting (where alphabetical ordering matters)! But there are a few new tricks that we could employ to solve string problems. Remember! if we can solve string problems using array techniques, we can solve array problems with string techniques.</p>
+
+## Using a hashtable
+<p>What's so cool about strings and characters is that they are hashable. We can associate a character, sub-string or string with a certain value that we would like to keep track of for each character, sub-string or string respectively. This could be the number of times it appears or even the position of the character in a string or string in an array. Let us illustrate the use of a hashtable with Leetcode problem <a href="https://leetcode.com/problems/longest-substring-without-repeating-characters/">3</a>.</p>
+
+<img src="images/p3.PNG" height="50%" width="50%">
+
+<p>In order to find the longest substring with non-repeating characters, we keep track of the last seen position of each character in the string. This way we know that the next sub-string that we observe has to begin at the next position of the last seen position.</p>
+
+```cpp
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        unordered_map<char, int> seen;
+        int start = 0;
+        int end = 0;
+        int longest_len = 0;
+        while(start != s.length() && end != s.length()){
+            if(seen.find(s[end]) == seen.end() || seen[s[end]] < start){
+                seen[s[end]] = end;
+                if(end - start + 1 > longest_len)
+                    longest_len = end - start + 1;
+                end += 1;
+            }
+            else{
+                start = seen[s[end]] + 1;
+                seen[s[end]] = end;
+                end += 1;
+            }
+        }
+        return longest_len;
+    }
+};
+```
