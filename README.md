@@ -212,7 +212,7 @@ public:
 4. <a href="https://leetcode.com/problems/beautiful-arrangement-ii/">Leetcode Problem 667: Beautiful Arrangement ii</a><br>
 5. <a href="https://leetcode.com/problems/fruit-into-baskets/">Leetcode Problem 904: Fruit Into Baskets</a>
 
-# Strings <a name="strings"></a> :dolphin:
+# Strings <a name="strings"></a> :ramen:
 <p>Array problems are often interchangable with string problems. After all, a string is an array of characters! When solving string problems, we might have to employ the two pointers approach that we discussed and sometimes even sorting (where alphabetical ordering matters). But there are a few new tricks that we could employ to solve string problems. Remember! if we can solve string problems using array techniques, we can solve array problems with string techniques.</p>
 
 ## Using A Hashtable :rocket:
