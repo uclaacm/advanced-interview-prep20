@@ -247,3 +247,76 @@ public:
     }
 };
 ```
+## Sliding Window
+<p>Another greedy approach to solving string problems is using a sliding window of a fixed size to slide across our string while we check constraints and keep track of some values. A sliding window is essentially a range of characters in our string which starts from the beginning and terminates a fixed length before the end of the string. The concept is better illustrated in this figure from <a href="https://tinyfool.org/2019/04/the-sliding-window-algorithm/">TinyFool's blog.</a></p>
+
+<img src="images/slidingwindow.png" width="50%" height="50%">
+
+<p>In the above figure the window is three characters wide and slides across from the beginning to the end. We need to make sure to check edge cases and not slide out of bounds. Let us work through a problem that makes use of the sliding window technique. Consider Leetcode problem <a href="https://leetcode.com/problems/substring-with-concatenation-of-all-words/">30</a>.</p>
+
+<img src="images/p30.PNG" width="50%" height="50%">
+
+<p>The above problem requires using both the techniques that we just learned. A hash table to keep track of the number and which words are present in the words vector and a sliding window of some length to slide across all possible candidate substrings that are of that length. On close observation we notice that the length of the window is going to be the total number of characters in the words vector. This is because every concatenation of all words will be of that fixed length. Now we just slide our window across the string and for each candidate we check if all the individual words in the words vector are present. We do this by counting backwards, decrementing the count of a word in a copy of the previously constructed hash table every time we encounter a valid word. We also count the number of words encountered to ensure that we account for exactly the right number of words.</p>
+
+```cpp
+class Solution {
+public:
+    vector<int> findSubstring(string s, vector<string>& words) {
+        //result we are going to return
+        vector<int> result;
+        //handle edge cases
+        if(s == "" || words.size() == 0) 
+            return result;
+        //we obtain the length of each word in words vector and the size of the window
+        //we will be considering.
+        int word_len = words[0].length();
+        int window_len = words.size() * word_len;
+        //handle invalid case where our window is bigger than our string.
+        if(window_len > s.size())
+            return result;
+        //create a hash table to keep track of words in the words vector and the number
+        //of times each word appears. This will be used to check if a given window over 
+        //the string s has a combination of any of these words
+        unordered_map<string, int> word_counts;
+        for(auto it : words){
+            if(word_counts.find(it) == word_counts.end()){
+                word_counts[it] = 1; 
+            }else{
+                word_counts[it] += 1;
+            }
+        }
+        //iterate through all windows
+        for(int i = 0; i <= s.size() - window_len; i++){
+            //create a temporary hash map that will keep track of the words encountered
+            //in this window.
+            unordered_map<string, int> temp_words_counts(word_counts);
+            int j = i;
+            //number of words that are in the words vector which must be zero if we have
+            //encountered all the words in our window.
+            int count = words.size();
+            while(j < i + window_len){
+                //check every substring of length 'word_len'
+                string temp = s.substr(j, word_len);
+                //if the word is not in our words vector or even if it is but there are too many
+                //break out of this window.
+                if(word_counts.find(temp) == word_counts.end() || temp_words_counts[temp] == 0){
+                    break;
+                }else{
+                    //else we decrement the count of that particular word and count, moving us
+                    //closer to the result.
+                    temp_words_counts[temp] -= 1;
+                    count -= 1;
+                }
+                j += word_len;
+            }
+            //we have encountered all the words in this window in some permutation.
+            //we add the starting index to our result vector.
+            if(count == 0)
+                result.push_back(i);
+            
+        }
+        
+        return result;
+    }
+};
+```
