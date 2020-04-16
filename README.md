@@ -213,12 +213,12 @@ public:
 5. <a href="https://leetcode.com/problems/fruit-into-baskets/">Leetcode Problem 904: Fruit Into Baskets</a>
 
 # Strings <a name="strings"></a> :dolphin:
-<p>Array problems are often interchangable with string problems. After all, a string is an array of characters! When solving string problems, we might have to employ the two pointers approach that we discussed and sometimes even sorting (where alphabetical ordering matters)! But there are a few new tricks that we could employ to solve string problems. Remember! if we can solve string problems using array techniques, we can solve array problems with string techniques.</p>
+<p>Array problems are often interchangable with string problems. After all, a string is an array of characters! When solving string problems, we might have to employ the two pointers approach that we discussed and sometimes even sorting (where alphabetical ordering matters). But there are a few new tricks that we could employ to solve string problems. Remember! if we can solve string problems using array techniques, we can solve array problems with string techniques.</p>
 
-## Using a hashtable
+## Using A Hashtable :rocket:
 <p>What's so cool about strings and characters is that they are hashable. We can associate a character, sub-string or string with a certain value that we would like to keep track of for each character, sub-string or string respectively. This could be the number of times it appears or even the position of the character in a string or string in an array. Let us illustrate the use of a hashtable with Leetcode problem <a href="https://leetcode.com/problems/longest-substring-without-repeating-characters/">3</a>.</p>
 
-<img src="images/p3.PNG" height="50%" width="50%">
+<p align="center"><img src="images/p3.PNG" height="50%" width="50%"></p>
 
 <p>In order to find the longest substring with non-repeating characters, we keep track of the last seen position of each character in the string. This way we know that the next sub-string that we observe has to begin at the next position of the last seen position.</p>
 
@@ -247,16 +247,16 @@ public:
     }
 };
 ```
-## Sliding Window
-<p>Another greedy approach to solving string problems is using a sliding window of a fixed size to slide across our string while we check constraints and keep track of some values. A sliding window is essentially a range of characters in our string which starts from the beginning and terminates a fixed length before the end of the string. The concept is better illustrated in this figure from <a href="https://tinyfool.org/2019/04/the-sliding-window-algorithm/">TinyFool's blog.</a></p>
+## Sliding Window :running:
+<p>Another greedy approach to solving string problems is using a sliding window of a fixed size to slide across our string while we check constraints and keep track of some values. A sliding window is essentially a range of characters in our string that starts from the beginning and terminates a fixed-length before the end of the string. The concept is better illustrated in this figure from <a href="https://tinyfool.org/2019/04/the-sliding-window-algorithm/">TinyFool's blog.</a></p>
 
-<img src="images/slidingwindow.png" width="50%" height="50%">
+<p align="center"><img src="images/slidingwindow.png" width="50%" height="50%"></p>
 
-<p>In the above figure the window is three characters wide and slides across from the beginning to the end. We need to make sure to check edge cases and not slide out of bounds. Let us work through a problem that makes use of the sliding window technique. Consider Leetcode problem <a href="https://leetcode.com/problems/substring-with-concatenation-of-all-words/">30</a>.</p>
+<p>In the above figure, the window is three characters wide and slides across from the beginning to the end. We need to make sure to check edge cases and not slide out of bounds. Let us work through a problem that makes use of the sliding window technique. Consider Leetcode problem <a href="https://leetcode.com/problems/substring-with-concatenation-of-all-words/">30</a>.</p>
 
-<img src="images/p30.PNG" width="50%" height="50%">
+<p align="center"><img src="images/p30.PNG" width="50%" height="50%"></p>
 
-<p>The above problem requires using both the techniques that we just learned. A hash table to keep track of the number and which words are present in the words vector and a sliding window of some length to slide across all possible candidate substrings that are of that length. On close observation we notice that the length of the window is going to be the total number of characters in the words vector. This is because every concatenation of all words will be of that fixed length. Now we just slide our window across the string and for each candidate we check if all the individual words in the words vector are present. We do this by counting backwards, decrementing the count of a word in a copy of the previously constructed hash table every time we encounter a valid word. We also count the number of words encountered to ensure that we account for exactly the right number of words.</p>
+<p>The above problem requires using both the techniques that we just learned. A hash table to keep track of the which words are present in the words vector and the number of times each one occurs, and a sliding window of some length to slide across all possible candidate substrings that are of that length. On close observation, we notice that the length of the window is going to be the total number of characters in the words vector. This is because every concatenation of all words will be of that fixed length. Now we just slide our window across the string. For each candidate, we check if all the individual words in the words vector are present. We do this by counting backward, decrementing the count of a word in a copy of the previously constructed hash table every time we encounter a valid word. We also count the number of words encountered to ensure that we account for exactly the right number of words. The time complexity of the above algorithm is going to be O((N-K) * K) where K is the length of the concatenated string and N is the length of the given string.</p>
 
 ```cpp
 class Solution {
@@ -320,3 +320,11 @@ public:
     }
 };
 ```
+## Practice :muscle:
+<p>There are a few more types of string questions that one may encounter in technical interviews. These include Dynamic Programming, BFS/DFS, Topological Sort, etc. Don't worry, we'll cover these concepts when we get there. But for now, we will just work with the above problem-solving techniques. Remember to use the skills that you employed when solving array questions because they can come in handy as well.</p>
+
+1. <a href="https://leetcode.com/problems/first-missing-positive/">Leetcode Problem </a><br>
+2. <a href="https://leetcode.com/problems/trapping-rain-water/">Leetcode Problem</a><br>
+3. <a href="https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/">Leetcode Problem </a><br>
+4. <a href="https://leetcode.com/problems/beautiful-arrangement-ii/">Leetcode Problem </a><br>
+5. <a href="https://leetcode.com/problems/fruit-into-baskets/">Leetcode Problem </a>
