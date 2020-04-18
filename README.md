@@ -325,8 +325,7 @@ public:
 ## Practice :muscle:
 <p>There are a few more types of string questions that one may encounter in technical interviews. These include Dynamic Programming, BFS/DFS, Topological Sort, etc. Don't worry, we'll cover these concepts when we get there. But for now, we will just work with the above problem-solving techniques. Remember to use the skills that you employed when solving array questions because they can come in handy as well.</p>
 
-1. <a href="https://leetcode.com/problems/first-missing-positive/">Leetcode Problem </a><br>
-2. <a href="https://leetcode.com/problems/trapping-rain-water/">Leetcode Problem</a><br>
-3. <a href="https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/">Leetcode Problem </a><br>
-4. <a href="https://leetcode.com/problems/beautiful-arrangement-ii/">Leetcode Problem </a><br>
-5. <a href="https://leetcode.com/problems/fruit-into-baskets/">Leetcode Problem </a>
+1. [Leetcode Problem 6: ZigZag Conversion](https://leetcode.com/problems/zigzag-conversion/)
+2. [Leetcode Problem 32: Longest Valid Parentheses](https://leetcode.com/problems/longest-valid-parentheses/)
+3. [Leetcode Problem 49: Group Anagrams](https://leetcode.com/problems/group-anagrams/)
+4. [Leetcode Problem 767: Reorganize String](https://leetcode.com/problems/reorganize-string/)
