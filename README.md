@@ -372,7 +372,7 @@ public:
 
 <p align="center"><img src="images/p61.PNG" width="50%" height="50%"></p>
 
-<p>On close observation, we notice that we need to rotate the list about the kth node from the end as shown in the example above. This corresponds to the (length - k)th node where 'length' is the length of the linked list. We also need to be careful about the case when k is greater than the length of the linked list which simply means that we are rotating multiple times even after resetting the configuration of the linked list one or more times. This can be handled by taking the remainder with the length of the list to obtain the effective number of places we are going to rotate the list. Once be determine the kth node from the end (or the (length-k)th node from the beginning) it is only a matter of moving some pointers around after which we reach our result configuration.</p>
+<p>On close observation, we notice that we need to rotate the list about the kth node from the end as shown in the example above. This corresponds to the (length - k)th node where 'length' is the length of the linked list. We also need to be careful about the case when k is greater than the length of the linked list which simply means that we are rotating multiple times even after resetting the configuration of the linked list one or more times. This can be handled by taking the remainder with the length of the list to obtain the effective number of places we are going to rotate the list. Once be determine the kth node from the end (or the (length-k)th node from the beginning) it is only a matter of moving some pointers around after which we reach our result configuration. The time complexity would be O(N) for this solution.</p>
 
 ```cpp
 class Solution {
