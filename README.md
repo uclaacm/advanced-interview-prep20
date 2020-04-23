@@ -400,3 +400,57 @@ public:
     }
 };
 ```
+<p>Lastly, let us attempt to solve a hard problem related to linked lists. Merging two sorted lists is pretty straight forward. If you have never attempted that problem, be sure to check that out first. We discuss the problem in the CS32 interview prep guide. Let us consider a harder problem i.e. Leetcode problem <a href="https://leetcode.com/problems/merge-k-sorted-lists/">23</a>. One where we merge K sorted lists. 
+
+<img src="p23.PNG" width="50%" height="50%">
+
+<p>One first glace, the most basic idea derived from the implementation of the merge two lists is to take the list with the smallest head, add the element to our list and advance the head of that node by one. We keep doing this until all our lists' heads are at null which means we have successfully appended all the elemets of our list to the end of our sorted list. The important aspect here is to deal with keeping track of which element to pick from the sorted lists. We would have to iterate through all the list head elements each time we add a new element making the time complexity of this approach O(N*K) where K is the number of sorted lists. If we want to do better, we have to exploit the fact that all the lists are already sorted.</p>
+
+<p>We introduce the idea of a priority queue, a queue, often implemented as a heap, that keeps track of the order of elements. We define a custom comparision class for the priority queue so that it can store the linked lists' heads in a way that the head with the least value is at the front of our queue. This makes our algorithm super efficient because when we pop a list from the queue, append the head node to our result list and advance the head pointer, we do this in constant time. The only costly operation here is to maintain the order of the queue which when implemented as a heap just takes log(K) time to reorder when we add a new head node to the queue. We do this O(N) times while constructing our N element sorted result list. This makes our algorithm more efficient as the time complexity is O(N*log(K)).
+</p>
+
+```cpp
+//This is how we define a custom compare class for a priority queue in C++.
+//The custom comparator takes in the heads of two sorted lists and
+//returns true if the first list head is greater than that of the second.
+//note that this is opposite to a custom comparator for the sort function because
+//the priority queue defaults to storing the elements in decreasing order.
+struct CompareHead { 
+    bool operator()(ListNode* const& h1, ListNode* const& h2) 
+    {  
+        return h1->val > h2->val; 
+    } 
+}; 
+
+class Solution {
+public:
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        //initialize a priority queue.
+        priority_queue<ListNode*, vector<ListNode*>, CompareHead> Q;
+        //use a dummy head to mark the beginning of the result linked list.
+        ListNode* dummy = new ListNode(0);
+        dummy->next = nullptr;
+        ListNode* curr = dummy;
+        //push all the linked lists in the lists vector into our priority queue
+        //which orders them based on the custom comparator defined above.
+        for(int i = 0; i < lists.size(); i++) {
+            if(lists[i] != nullptr)
+                Q.push(lists[i]);
+        }
+        //while we still have elements in the Priority Queue.
+        while(Q.size()){
+            ListNode* temp = Q.top();
+            Q.pop();
+            //append the popped head to the result linked list.
+            curr->next = new ListNode(temp->val);
+            curr = curr->next;
+            curr->next = nullptr;
+            //advance the head by one node if there are elements left in the
+            //linked list.
+            if(temp->next != nullptr)
+                Q.push(temp->next);
+        }
+        return dummy->next;
+    }
+};
+```
