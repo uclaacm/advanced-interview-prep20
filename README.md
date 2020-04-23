@@ -330,10 +330,12 @@ public:
 3. [Leetcode Problem 49: Group Anagrams](https://leetcode.com/problems/group-anagrams/)
 4. [Leetcode Problem 767: Reorganize String](https://leetcode.com/problems/reorganize-string/)
 
-# Linked Lists <a name="linkedlists"></a> :ramen:
+# Linked Lists <a name="linkedlists"></a> :musical_note:
 <p>Linked Lists are a pretty neat data structure. As you might have learnt in CS 32, the beginning of the list is marked by the head and the end of the list is marked by a pointer to a null pointer. There are various kinds of linked lists like singly linked lists, doubly linked lists, circular linked lists etc. When it comes to technical interviews, you are most often going to deal with linked lists which are singly linked. Why? simply they are the most challenging algorithmically. You would have to take extra care when traversing a linked list to not make a null access or keep track of the previous element because you will not be able to just step back in the event that you need to access it. There are no particular linked list problem solving techniques but the keen eye will catch a few tricks that we can employ when dealing with singly linked lists.</p>
 
 <p align="center"><img src="images/linkedlistmeme.jpg" width="50%" height="50%"></p>
+
+## Using a dummy node :smiley_cat:
 
 <p>Let's take a look at one particular interesting trick that can help us solve a lot of linked list problems without worrying too much about edge cases. That trick is using a dummy pointer. Using a dummy pointer in the beginning and setting it to the head allows us to treat one and zero element lists no differently from linked lists with more than one node. Further, using a dummy head helps us to keep track of the head of the list easily. For example, if the head of the linked list is moved away and is no longer the linked list of the new re-ordered list, we can simply return the head of the list by returning the dummy's next pointer.</p>
 
@@ -343,7 +345,7 @@ public:
 
 <p align="center"><img src="images/p92.PNG" width="50%" height="50%"></p>
 
-<p>First off, we notice that this problem could get messy with the edge cases as it involving partially reversing a list. So we attach a dummy node to the beginning of the list. Once we're done with that we iterate with a pointer 'prev' to the node just before the beginning of the sub-list we are going to reverse. We then set a pointer to point to the start of the list (i.e. the pointer 'start'). The idea now would be to move the start of the sub-list forward by moving the node to the next of the start of the sub-list to be just after the node 'prev'. We thus accomplish reversing the linked list in a single pass and in O(N) time where N is the number of nodes in the list. This is best illustrated with the following figure.</p>
+<p>First off, we notice that this problem could get messy with the edge cases since it involves partially reversing a list. We attach a dummy node to the beginning of the list to avoid handling these special edge cases. Once we're done with that we iterate with a pointer 'prev' to the node just before the beginning of the sub-list we are going to reverse. We then set a pointer to point to the start of the list (i.e. the pointer 'start'). The idea now would be to move the start of the sub-list forward by moving the node to the next of the start of the sub-list to be just after the node 'prev'. We thus accomplish reversing the linked list in a single pass and in O(N) time where N is the number of nodes in the list. This is best illustrated with the following figure.</p>
 
 <p align="center"><img src="images/p92ill.PNG"></p>
 
@@ -351,9 +353,12 @@ public:
 class Solution {
 public:
    ListNode* reverseBetween(ListNode* head, int m, int n) {
+       //create a dummy node.
        ListNode *dummy = new ListNode(0);
        dummy->next = head;
        ListNode* prev = dummy;
+       //move the prev node until the node just before the start of
+       //the sublist that we want to reverse.
        for(int i = 0; i < m-1; i++) prev = prev->next;
        ListNode* curr = prev->next;
        for(int i = 0; i < n-m; i++){
@@ -368,11 +373,13 @@ public:
 };
 ```
 
+## Messy pointer movement :horse:
+
 <p>The one problem unlike arrays that we face with linked is that the length of the linked list is not so easy to calculate. Luckily, we can determine the length of the linked list in O(N) time so it will not, in most cases, affect the time complexity of the algorithm. We need to be careful when we make generalizations regarding the math surrounding linked lists. We would have to handle some edge cases as best illustrated by the solution to the following problem. Consider the Leetcode problem <a href="https://leetcode.com/problems/rotate-list/">61</a>.</p>
 
 <p align="center"><img src="images/p61.PNG" width="50%" height="50%"></p>
 
-<p>On close observation, we notice that we need to rotate the list about the kth node from the end as shown in the example above. This corresponds to the (length - k)th node where 'length' is the length of the linked list. We also need to be careful about the case when k is greater than the length of the linked list which simply means that we are rotating multiple times even after resetting the configuration of the linked list one or more times. This can be handled by taking the remainder with the length of the list to obtain the effective number of places we are going to rotate the list. Once be determine the kth node from the end (or the (length-k)th node from the beginning) it is only a matter of moving some pointers around after which we reach our result configuration. The time complexity would be O(N) for this solution.</p>
+<p>On close observation, we notice that we need to rotate the list about the kth node from the end as shown in the example above. This corresponds to the (length - k)th node where 'length' is the length of the linked list. We also need to be careful about the case when k is greater than the length of the linked list which simply means that we are rotating multiple times even after returning to the original configuration of the linked list one or more times. This can be handled by taking the remainder with the length of the list to obtain the effective number of places we are going to rotate the list. Once be determine the kth node from the end (or the (length-k)th node from the beginning) it is only a matter of moving some pointers around after which we reach our result configuration. The time complexity would be O(N) for this solution.</p>
 
 ```cpp
 class Solution {
@@ -400,6 +407,9 @@ public:
     }
 };
 ```
+
+## A hard problem :rose:
+
 <p>Lastly, let us attempt to solve a hard problem related to linked lists. Merging two sorted lists is pretty straight forward. If you have never attempted that problem, be sure to check that out first. We discuss the problem in the CS32 interview prep guide. Let us consider a harder problem i.e. Leetcode problem <a href="https://leetcode.com/problems/merge-k-sorted-lists/">23</a>. One where we merge K sorted lists. 
 
 <img src="p23.PNG" width="50%" height="50%">
@@ -454,3 +464,9 @@ public:
     }
 };
 ```
+
+## Practice :muscle:
+The best way to solve hard linked list problems is to get good at reversing lists, sublists, pairs of nodes etc. It always helps to draw out the linked list and visualize how the pointers have to move around before getting into actual code.
+
+
+1. [Leetcode Problem 2: Add Two Numbers](https://leetcode.com/problems/add-two-numbers/)
