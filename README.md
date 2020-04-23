@@ -412,7 +412,7 @@ public:
 
 <p>Lastly, let us attempt to solve a hard problem related to linked lists. Merging two sorted lists is pretty straight forward. If you have never attempted that problem, be sure to check that out first. We discuss the problem in the CS32 interview prep guide. Let us consider a harder problem i.e. Leetcode problem <a href="https://leetcode.com/problems/merge-k-sorted-lists/">23</a>. One where we merge K sorted lists. 
 
-<img src="p23.PNG" width="50%" height="50%">
+<p align="center"><img src="images/p23.PNG" width="50%" height="50%"></p>
 
 <p>One first glace, the most basic idea derived from the implementation of the merge two lists is to take the list with the smallest head, add the element to our list and advance the head of that node by one. We keep doing this until all our lists' heads are at null which means we have successfully appended all the elemets of our list to the end of our sorted list. The important aspect here is to deal with keeping track of which element to pick from the sorted lists. We would have to iterate through all the list head elements each time we add a new element making the time complexity of this approach O(N*K) where K is the number of sorted lists. If we want to do better, we have to exploit the fact that all the lists are already sorted.</p>
 
