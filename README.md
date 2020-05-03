@@ -473,7 +473,7 @@ The best way to solve hard linked list problems is to get good at reversing list
 2. [Leetcode Problem 138: Copy List With Random Pointer](https://leetcode.com/problems/copy-list-with-random-pointer/)
 3. [Leetcode Problem 142: Linked List Cycle II](https://leetcode.com/problems/linked-list-cycle-ii/)
 
-# Trees I
+# Trees I <a name="trees1"></a>
 <p>Trees are an important data structure that one often deals with during technical interviews. When we take a look at trees we won't just be understanding trees as a data structure but we will also be dealing with quite a few tree algorithms. Tree algorithms involve tree traversals, tree searches, maintaining a particular ordering of nodes in a tree, etc. We will also be looking into a special class of trees called Binary Search Trees and how we can perform a Binary Search on such a tree. For now, let us deal with problems involving simple rooted trees.</p>
 
 <img src="images/treememe.jpg" width="50%" height="50%">
