@@ -476,7 +476,7 @@ The best way to solve hard linked list problems is to get good at reversing list
 # Trees I
 <p>Trees are an important data structure that one often deals with during technical interviews. When we take a look at trees we won't just be understanding trees as a data structure but we will also be dealing with quite a few tree algorithms. Tree algorithms involve tree traversals, tree searches, maintaining a particular ordering of nodes in a tree, etc. We will also be looking into a special class of trees called Binary Search Trees and how we can perform a Binary Search on such a tree. For now, let us deal with problems involving simple rooted trees.</p>
 
-<img src="treememe.jpg" width="50%" height="50%">
+<img src="images/treememe.jpg" width="50%" height="50%">
 
 ## Tree Traversals
 <p>A tree traversal is a walk through the entire tree visiting each node of the tree at least once. What order do we visit the nodes in? That is exactly what different tree traversals are all about, an ordering of the nodes. Let us consider In Order Traversal. Inorder traversal involves recursively visiting the left sub tree, followed by the root node and finally the right sub-tree. If we were asked to print the value of every node in a tree in order, we would perform an in order traversal like this.</p>
@@ -494,7 +494,7 @@ void inorderTraversal(TreeNode* root){
 
 <p>While the above function performs inorder traversal of a tree and the code looks beautiful: clean and simple, there is a better solution. Consider Leetcode problem <a src="https://leetcode.com/problems/binary-tree-inorder-traversal/">94</a>. While the solution is optimal in terms of time complexity (O(N) where N is the number of nodes in the tree since we are visiting each node exactly once), there is a more space efficient solution that can be achieved by taking an iterative approach. The recursive approach is more memory hungry as it takes up O(N) stack space. Allocating more stack space also slows down the recursion. So a faster and more memory efficient approach would be to perform the traversal iteratively.</p>
 
-<img src="p94.PNG" height="50%" width="50%">
+<img src="images/p94.PNG" height="50%" width="50%">
 
 <p>If do not want to use the memory stack because of the overhead, we will create our own stack to assist us with the traversal. Below is the solution to the stack-based iterative solution to performing an inorder traversal of a tree.</p>
 
@@ -528,7 +528,7 @@ public:
 
 <p>Now that we know how to traverse the trees, let us attempt to construct a tree from the inorder and pre-order traversal orders. Consider Leetcode problem <a src="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/">105</a>.</p>
 
-<img src="p105.PNG" width="50%" height="50%">
+<img src="images/p105.PNG" width="50%" height="50%">
 
 ## Practice :muscle:
 1. Binary Tree Postorder
