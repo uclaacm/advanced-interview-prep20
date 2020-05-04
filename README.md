@@ -531,6 +531,8 @@ public:
 <img src="images/p105.PNG" width="50%" height="50%">
 
 ## Practice :muscle:
-1. Binary Tree Postorder
-2. Binary Tree to linked list
-3. Unique Binary Search Trees II
+1. [Leetcode Problem 102: Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/)
+2. [Leetcode Problem 144: Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/)
+3. [Leetcode Problem 99: Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/)
+4. [Leetcode Problem 145: Binary Tree Postorder Traversal](https://leetcode.com/problems/binary-tree-postorder-traversal/)
+5. [Leetcode Problem 114: Flatten Binary Tree to Linked List](https://leetcode.com/problems/flatten-binary-tree-to-linked-list/)
