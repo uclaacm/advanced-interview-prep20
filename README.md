@@ -582,7 +582,7 @@ public:
 
 <p>Now that we are comfortable with recursion, let us deal with a classic problem that a lot of companies like to ask in their interviews. This is Leetcode problem <a href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/">236</a>.</p>
 
-<img src="images/p235.PNG" height="50%" width="50%">
+<img src="images/p236.PNG" height="50%" width="50%">
 
 <p>So how do we identify the Lowest Common Ancestor (LCA) of two nodes p and q? Well first let's ask the question how do we identify the nodes p and q? It is pretty straight-forward, we perform a preorder traversal of the tree. Once we do find p or q, we need to propogate the information that we found p or q up to the ancestors. The best way to do that would be to return the pointer to the node. When we move beyond a leaf, we just return the null pointer. So a null pointer would indicate that we have found neither p or q among its successors and a non-null pointer would indicate that we did find p or q. If the recursive call on the left subtree and the right subtree both return non-null pointers, then we have found the LCA and we propogate a pointer to the LCA upwards.</p>
 
