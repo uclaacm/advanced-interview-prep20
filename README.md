@@ -476,7 +476,7 @@ The best way to solve hard linked list problems is to get good at reversing list
 # Trees I <a name="trees1"></a>
 <p>Trees are an important data structure that one often deals with during technical interviews. When we take a look at trees we won't just be understanding trees as a data structure but we will also be dealing with quite a few tree algorithms. Tree algorithms involve tree traversals, tree searches, maintaining a particular ordering of nodes in a tree, etc. We will also be looking into a special class of trees called Binary Search Trees and how we can perform a Binary Search on such a tree. For now, let us deal with problems involving simple rooted trees.</p>
 
-<img src="images/treememe.jpg" width="50%" height="50%">
+<p align="center"><img src="images/treememe.jpg" width="50%" height="50%"></p>
 
 ## Tree Traversals
 <p>A tree traversal is a walk through the entire tree visiting each node of the tree at least once. What order do we visit the nodes in? That is exactly what different tree traversals are all about, an ordering of the nodes. Let us consider In Order Traversal. Inorder traversal involves recursively visiting the left sub tree, followed by the root node and finally the right sub-tree. If we were asked to print the value of every node in a tree in order, we would perform an in order traversal like this.</p>
@@ -580,6 +580,44 @@ public:
 };
 ```
 
+<p>Now that we are comfortable with recursion, let us deal with a classic problem that a lot of companies like to ask in their interviews. This is Leetcode problem <a href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/">236</a>.</p>
+
+<img src="images/p235.PNG" height="50%" width="50%">
+
+<p>So how do we identify the Lowest Common Ancestor (LCA) of two nodes p and q? Well first let's ask the question how do we identify the nodes p and q? It is pretty straight-forward, we perform a preorder traversal of the tree. Once we do find p or q, we need to propogate the information that we found p or q up to the ancestors. The best way to do that would be to return the pointer to the node. When we move beyond a leaf, we just return the null pointer. So a null pointer would indicate that we have found neither p or q among its successors and a non-null pointer would indicate that we did find p or q. If the recursive call on the left subtree and the right subtree both return non-null pointers, then we have found the LCA and we propogate a pointer to the LCA upwards.</p>
+
+```cpp
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if(root == nullptr)
+            return nullptr;
+        if(root == p || root == q)
+            return root;
+        else{
+            TreeNode* l = lowestCommonAncestor(root->left, p, q);
+            TreeNode* r = lowestCommonAncestor(root->right, p , q);
+            if(l == nullptr && r == nullptr)
+                return nullptr;
+            else if(l != nullptr && r == nullptr)
+                return l;
+            else if(l == nullptr && r != nullptr)
+                return r;
+            else
+                return root;
+        }
+    }
+};
+```
 ## Practice :muscle:
 1. [Leetcode Problem 102: Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/)
 2. [Leetcode Problem 144: Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/)
