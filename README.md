@@ -530,6 +530,56 @@ public:
 
 <img src="images/p105.PNG" width="50%" height="50%">
 
+<p>This problem is all about using the right pointers. Upon close observation of the inorder and preorder lists, we notice that subtrees are grouped together. The nodes of the left subtree is grouped together in the preorder and inorder lists. The same goes to the left. So we can take advantage of this grouping in our recursion. We maintain 4 pointer in each recursive call. The start of the preorder list, the end of the preorder list, the start of the inorder list and the end of the inorder list. During the call we generate eight new pointers, the four mentioned pointers for the left and right subtrees of the root.</p>
+
+```cpp
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    
+    TreeNode* buildTreeHelper(vector<int>& preorder, vector<int>& inorder, int preorder_start, int preorder_end, int inorder_start, int inorder_end){
+        if(preorder_start >= preorder_end || inorder_start >= inorder_end)
+            return nullptr;
+        
+        int root = preorder[preorder_start];
+        int iroot;
+        for(int j = inorder_start; j < inorder_end; j++){
+            if(inorder[j] == root){
+                iroot = j;
+                break;
+            }
+        }
+        TreeNode* rootptr = new TreeNode(root);
+        int length_of_left_list = iroot - inorder_start;
+        int new_preorder_start_left = preorder_start + 1;
+        int new_preorder_end_left =  preorder_start + length_of_left_list + 1;
+        int new_preorder_start_right = new_preorder_end_left;
+        int new_preorder_end_right = preorder_end;
+        int new_inorder_start_left = inorder_start;
+        int new_inorder_end_left = iroot;
+        int new_inorder_start_right = iroot + 1;
+        int new_inorder_end_right = inorder_end;
+        rootptr->left = buildTreeHelper(preorder, inorder, new_preorder_start_left, new_preorder_end_left, new_inorder_start_left, new_inorder_end_left);
+        rootptr->right = buildTreeHelper(preorder, inorder, new_preorder_start_right, new_preorder_end_right, new_inorder_start_right, new_inorder_end_right);
+        return rootptr;
+    }
+    
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        return buildTreeHelper(preorder, inorder, 0, preorder.size(), 0, inorder.size());
+    }
+};
+```
+
 ## Practice :muscle:
 1. [Leetcode Problem 102: Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/)
 2. [Leetcode Problem 144: Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/)
