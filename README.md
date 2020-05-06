@@ -494,7 +494,7 @@ void inorderTraversal(TreeNode* root){
 
 <p>While the above function performs inorder traversal of a tree and the code looks beautiful: clean and simple, there is a better solution. Consider Leetcode problem <a src="https://leetcode.com/problems/binary-tree-inorder-traversal/">94</a>. While the solution is optimal in terms of time complexity (O(N) where N is the number of nodes in the tree since we are visiting each node exactly once), there is a more space efficient solution that can be achieved by taking an iterative approach. The recursive approach is more memory hungry as it takes up O(N) stack space. Allocating more stack space also slows down the recursion. So a faster and more memory efficient approach would be to perform the traversal iteratively.</p>
 
-<img src="images/p94.PNG" height="50%" width="50%">
+<p align="center"><img src="images/p94.PNG" height="50%" width="50%"></p>
 
 <p>If do not want to use the memory stack because of the overhead, we will create our own stack to assist us with the traversal. Below is the solution to the stack-based iterative solution to performing an inorder traversal of a tree.</p>
 
@@ -528,7 +528,7 @@ public:
 
 <p>Now that we know how to traverse the trees, let us attempt to construct a tree from the inorder and pre-order traversal orders. Consider Leetcode problem <a src="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/">105</a>.</p>
 
-<img src="images/p105.PNG" width="50%" height="50%">
+<p align="center"><img src="images/p105.PNG" width="50%" height="50%"></p>
 
 <p>This problem is all about using the right pointers. Upon close observation of the inorder and preorder lists, we notice that subtrees are grouped together. The nodes of the left subtree is grouped together in the preorder and inorder lists. The same goes to the left. So we can take advantage of this grouping in our recursion. We maintain 4 pointer in each recursive call. The start of the preorder list, the end of the preorder list, the start of the inorder list and the end of the inorder list. During the call we generate eight new pointers, the four mentioned pointers for the left and right subtrees of the root.</p>
 
