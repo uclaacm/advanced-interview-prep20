@@ -14,7 +14,7 @@ technical skills, this is a great place to get started. If you have no idea abou
 5. [Trees II](#trees2)
 6. [Graphs](#graphs)
 7. [Recursion and Dynamic Programming](#recursionanddynamicprogramming)
-8. [System Design](#systemdesign)
+8. [Topological and Heap Sort](#topologicalandheapsort)
 
 # Arrays <a name="arrays"></a> :dolphin:
 <p>Array questions, often interchangeable with string questions are some of the most common questions asked during technical interviews. As we have learned previously, what makes arrays so popular is their simplicity in storing data. When dealing with arrays you want to deal with an algorithm that is in the O(N) or O(log(N)) ballpark. This is achieved by the constant time access with indexing. When required to sort, we would be dealing with an O(NlogN) algorithm. Let us take a look at some vanilla array problems.</p>
@@ -624,3 +624,49 @@ public:
 3. [Leetcode Problem 99: Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/)
 4. [Leetcode Problem 145: Binary Tree Postorder Traversal](https://leetcode.com/problems/binary-tree-postorder-traversal/)
 5. [Leetcode Problem 114: Flatten Binary Tree to Linked List](https://leetcode.com/problems/flatten-binary-tree-to-linked-list/)
+
+# Topological and Heap Sort <a href="topologicalandheapsort"></a>
+## Topological Sort
+<p>Topological sort is a sorting technique that can be applied on elements with some precedence order associated with each element. There is, however, an important caveat concerned with topological sort: the elements which can be topologically sorted have form a Directed Acyclic Graph. We will examine Directed Acyclic Graphs in the upcoming section, but just so that you don't lose sight of our goal of finding a precedence order for elements, we can only determine precedence order only if there are no cyclic dependencies. For example, if we state that an element A comes before element B, and element B comes before element C then if A, B and C can be topologically sorted, C cannot come before A.</p>
+
+<p>So what is a Directed Acyclic Graph? Well it's a graph that is directed and acyclic, i.e. all the edges of the graph are directed and there are no cycles in the graph. This is best illustrated by the following graph.</p>
+
+<img src="graph.png" width="50%" height="50%">
+
+<p>Notice that in the above graph all the edges are directed and there are no cycles. 4, 1, 3 and 5 do not form a cycle because the edge between 3 and 5 is opposite to the direction of the cycle. Great, we have established that the above graph is a DAG, but how does this relate to topological ordering? Well, if each directed edge from a node u to a node v implies that u "precedes" v, we can extract a topological ordering from the above graph. So for the above graph, one possible topological ordering would be 0 2 4 1 5 3 6. Let us call this ordering a. Notice that for any two elements ai and aj in the ordering such that i < j, if a directed edge exists in the graph between ai and aj, it has to be from ai to aj. We can never find an edge from aj to ai. Ofcourse, it is also possible that no edge exists between ai and aj, simply implying that ai doesn't have to precede aj and similarly aj doesn't have to precede ai.</p>
+
+<p>Given a DAG, let us study the algorithm that is used for topological sort.</p>
+
+```cpp
+```
+
+<p>Now that we know the algorithm, lets take a crack at a problem. Consider Leetcode problem <a src="https://leetcode.com/problems/course-schedule/">207</a>. For this problem we use topological sort in order to determine if the course ordering is valid. We can think of a course ordering as a directed graph where each node is a course. There is a node pointing from node A to a node B if A is a pre-requisite of B. If a course schedule is valid then the graph formed must be a DAG so that we can take one course at a time without running into a cyclic dependency. We determine the topological ordering and if one can be determined successfully we know the given course schedule forms a DAG. We use the standard algorithm for determining a topological ordering from a DAG to solve the problem.</p>
+
+```cpp
+class Solution {
+public:
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+        int input_degree[100000] = {0};
+        unordered_map<int, vector<int>> edges;
+        queue<int> proc;
+        vector<int> order;
+        for(auto prereq : prerequisites){
+            input_degree[prereq[1]] += 1;
+            edges[prereq[0]].push_back(prereq[1]);
+        }
+        for(int i = 0; i < numCourses; i++){
+            if(input_degree[i] == 0) proc.push(i);
+        }
+        while(proc.size()){
+            int temp = proc.front();
+            proc.pop();
+            for(int i = 0; i < edges[temp].size(); i++){
+                input_degree[edges[temp][i]] -= 1;
+                if(input_degree[edges[temp][i]] == 0) proc.push(edges[temp][i]);
+            }
+            order.push_back(temp);
+        }
+        return order.size() == numCourses;
+    }
+};
+```
