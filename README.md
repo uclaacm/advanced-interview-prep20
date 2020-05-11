@@ -631,7 +631,7 @@ public:
 
 <p>So what is a Directed Acyclic Graph? Well it's a graph that is directed and acyclic, i.e. all the edges of the graph are directed and there are no cycles in the graph. This is best illustrated by the following graph.</p>
 
-<img src="graph.png" width="50%" height="50%">
+<p align="center"><img src="images/graph.png" width="50%" height="50%"></p>
 
 <p>Notice that in the above graph all the edges are directed and there are no cycles. 4, 1, 3 and 5 do not form a cycle because the edge between 3 and 5 is opposite to the direction of the cycle. Great, we have established that the above graph is a DAG, but how does this relate to topological ordering? Well, if each directed edge from a node u to a node v implies that u "precedes" v, we can extract a topological ordering from the above graph. So for the above graph, one possible topological ordering would be 0 2 4 1 5 3 6. Let us call this ordering a. Notice that for any two elements ai and aj in the ordering such that i < j, if a directed edge exists in the graph between ai and aj, it has to be from ai to aj. We can never find an edge from aj to ai. Ofcourse, it is also possible that no edge exists between ai and aj, simply implying that ai doesn't have to precede aj and similarly aj doesn't have to precede ai.</p>
 
@@ -640,7 +640,11 @@ public:
 ```cpp
 ```
 
-<p>Now that we know the algorithm, lets take a crack at a problem. Consider Leetcode problem <a src="https://leetcode.com/problems/course-schedule/">207</a>. For this problem we use topological sort in order to determine if the course ordering is valid. We can think of a course ordering as a directed graph where each node is a course. There is a node pointing from node A to a node B if A is a pre-requisite of B. If a course schedule is valid then the graph formed must be a DAG so that we can take one course at a time without running into a cyclic dependency. We determine the topological ordering and if one can be determined successfully we know the given course schedule forms a DAG. We use the standard algorithm for determining a topological ordering from a DAG to solve the problem.</p>
+<p>Now that we know the algorithm, lets take a crack at a problem. Consider Leetcode problem <a src="https://leetcode.com/problems/course-schedule/">207</a>.</p> 
+
+<img src="images/p207.PNG" width="50%" height="50%">
+
+<p>For this problem we use topological sort in order to determine if the course ordering is valid. We can think of a course ordering as a directed graph where each node is a course. There is a node pointing from node A to a node B if A is a pre-requisite of B. If a course schedule is valid then the graph formed must be a DAG so that we can take one course at a time without running into a cyclic dependency. We determine the topological ordering and if one can be determined successfully we know the given course schedule forms a DAG. We use the standard algorithm for determining a topological ordering from a DAG to solve the problem.</p>
 
 ```cpp
 class Solution {
