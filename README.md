@@ -625,8 +625,8 @@ public:
 4. [Leetcode Problem 145: Binary Tree Postorder Traversal](https://leetcode.com/problems/binary-tree-postorder-traversal/)
 5. [Leetcode Problem 114: Flatten Binary Tree to Linked List](https://leetcode.com/problems/flatten-binary-tree-to-linked-list/)
 
-# Topological and Heap Sort <a href="topologicalandheapsort"></a>
-## Topological Sort
+# Topological and Heap Sort <a href="topologicalandheapsort"></a> :palm_tree:
+## Topological Sort :earth_americas:
 <p>Topological sort is a sorting technique that can be applied on elements with some precedence order associated with each element. There is, however, an important caveat concerned with topological sort: the elements which can be topologically sorted have form a Directed Acyclic Graph. We will examine Directed Acyclic Graphs in the upcoming section, but just so that you don't lose sight of our goal of finding a precedence order for elements, we can only determine precedence order only if there are no cyclic dependencies. For example, if we state that an element A comes before element B, and element B comes before element C then if A, B and C can be topologically sorted, C cannot come before A.</p>
 
 <p>So what is a Directed Acyclic Graph? Well it's a graph that is directed and acyclic, i.e. all the edges of the graph are directed and there are no cycles in the graph. This is best illustrated by the following graph.</p>
@@ -672,6 +672,92 @@ public:
 };
 ```
 
+<p align="center"><img src="images/p347.PNG" width="50%" height="50%"></p>
+
+<p>We solve this problem by making use of a heap. The problem asks us to do better than O(NlogN) time complexity so we achieve a time complexity of O(NlogK) using a priority queue which stores the K most frequent elements. We maintain the element value and its frequency in a pair. We spend O(N) time constructing the unordered map to store element, frequency key-value pairs in order to construct our pair easily. Then we insert pairs into the priority queue while maintaining the restriction that there can only be K elements in the priority queue. As promised we write a custom comparision struct that our heap will use to order the pairs. The second element in the pair is the frequeuncy of the first element. Once we are done passing through all pairs, the elements remaining in our priority queue are the our top K frequent elements in the vector nums. Note that we have to define a custom comparator for the priority queue in order to compare pairs.</p>
+
+```cpp
+class Solution {
+public:
+    struct CustomCompare { 
+        bool operator()(pair<int, int> n1, pair<int, int> n2) 
+        {  
+            return n1.second > n2.second;
+        }
+    };
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        vector<int> result;
+        unordered_map<int, int> counts;
+        for(int i = 0; i < nums.size(); i++) counts[nums[i]] = 0;
+        for(int i = 0; i < nums.size(); i++) counts[nums[i]] += 1;
+        priority_queue<pair<int, int>, vector<pair<int, int>>, CustomCompare> Q;
+        for(auto iter : counts){
+            if(Q.size() < k){
+                Q.push(iter);
+            }else{
+                pair<int, int> n1 = Q.top();
+                if(counts[n1.first] < counts[iter.first]){
+                    Q.pop();
+                    Q.push(iter);
+                }
+            }
+        }
+        while(Q.size()){
+            result.push_back(Q.top().first);
+            Q.pop();
+        }
+        return result;
+    }
+};
+```
+
+<p>Lets tackle Leetcode problem <a href="https://leetcode.com/problems/split-array-into-consecutive-subsequences/">659</a> using heaps. While the use of heaps to solve this problem is not optimal, it does allow us to get creative with using heaps to solve problems. Try working out the more optimal greedy solution on your own!</p>
+
+<p align="center"><img src="images/p659.PNG" width="50%" height="50%"></p>
+
+<p>We maintain a priority queue for each number nums[i] that appears in the vector nums passed into the function. The priority queue will contain all the continuous increasing subsequences encountered thus far ending with the number nums[i] and will be ordered in increasing order of size (i.e. fewer the elements in the subsequence, the higher up in the priority queue). So we need a custom comparision struct to order the subsequences. That way, for any element nums[i] that we encounter in the vector nums, we can append it to the shortest consecutive increasing subsequence that ends with the number nums[i]-1. If there is no such subsequence, we create a new one with the first element being nums[i]. The time complexity for this solution is O(NlogN) where N is the number of distinct elements in the vector nums.</p>
+
+```cpp
+class Solution {
+public:
+    struct CustomCompare { 
+        bool operator()(vector<int>* v1, vector<int>* v2) 
+        {  
+            return v1->size() > v2->size();
+        }
+    };
+    
+    bool isPossible(vector<int>& nums) {
+        unordered_map<int, priority_queue<vector<int>*, vector<vector<int>*>, CustomCompare>> heaps;
+        for(int i = 0; i < nums.size(); i++){
+            if(heaps.find(nums[i]-1) == heaps.end() || heaps[nums[i]-1].size() == 0){
+                vector<int>* v = new vector<int>;
+                v->push_back(nums[i]);
+                heaps[nums[i]].push(v);
+            }else{
+                vector<int>* v = heaps[nums[i]-1].top();
+                heaps[nums[i]-1].pop();
+                v->push_back(nums[i]);
+                heaps[nums[i]].push(v);
+            }
+        }
+        bool is_valid = true;
+        for(auto it : heaps){
+            if(it.second.size() != 0){
+                if(it.second.top()->size() < 3){
+                    is_valid = false;
+                    break;
+                }
+            }
+        }
+        return is_valid;
+    }
+};
+```
+
 ## Practice :muscle:
-1. [Leetcode Problem 210: Course Schedule II](https://leetcode.com/problems/course-schedule-ii/)
-2. [Leetcode Problem 329: Longest Increasing Path in a Matrix](https://leetcode.com/problems/longest-increasing-path-in-a-matrix/)
+1. [Leetcode Problem 329: Longest Increasing Path In A Matrix](https://leetcode.com/problems/longest-increasing-path-in-a-matrix/)
+2. [Leetcode Problem 1203: Sort Items By Groups Respecting Dependencies](https://leetcode.com/problems/sort-items-by-groups-respecting-dependencies/)
+3. [Leetcode Problem 215: Kth Largest Element In An Array](https://leetcode.com/problems/kth-largest-element-in-an-array/)
+4. [Leetcode Problem 23: Merge K Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/)
+5. [Leetcode Problem 210: Course Schedule II](https://leetcode.com/problems/course-schedule-ii/)
