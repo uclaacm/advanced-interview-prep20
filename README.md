@@ -674,7 +674,7 @@ public:
 ## Heap Sort :milky_way:
 <p>Now on to heap sort. Well as the name suggests, Heap Sort is a sorting algorithm that employs heaps. Heaps as we all know from CS32 is a data structure that is used to maintain a particular order in elements, most commonly, in the form of a min heap or a max heap. A min heap maintains the elements in an order such that the minimum element is the topmost element of the heap, and every element is less than that its children (if children exist). Heap sort, just like any sorting algorithm is bounded by O(NlogN) time complexity. In C++ a heap is used to implement a priority queue. A priority queue can be used to maintain a custom ordering of just about anything. We would have to declare a custom comparision class in order to do so but this is often easier than it sounds as we will see in the upcoming examples.</p>
 
-<p align="center"><img src="images/heapmeme.PNG" width="50%" height="50%"></p>
+<p align="center"><img src="images/heapmeme.png" width="50%" height="50%"></p>
 
 <p>So the way heap sort would work would be to arrange all the elements to be sorted in a heap and then keep popping the topmost element until there are no remaining elements. The order in which the elements are popped is the heap sort ordering! While heap sort achieves what any other equally efficient algorithm like merge sort or pivot sort would achieve, the heap data structure itself (priority queue in C++) can be very useful in several interview problems. Consider Leetcode problem <a href="https://leetcode.com/problems/top-k-frequent-elements/">347</a>.</p>
 
