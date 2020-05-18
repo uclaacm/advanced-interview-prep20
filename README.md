@@ -671,3 +671,7 @@ public:
     }
 };
 ```
+
+## Practice :muscle:
+1. [Leetcode Problem 210: Course Schedule II](https://leetcode.com/problems/course-schedule-ii/)
+2. [Leetcode Problem 329: Longest Increasing Path in a Matrix](https://leetcode.com/problems/longest-increasing-path-in-a-matrix/)
