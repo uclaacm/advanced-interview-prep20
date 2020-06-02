@@ -13,7 +13,7 @@ technical skills, this is a great place to get started. If you have no idea abou
 4. [Trees I](#trees1)
 5. [Trees II](#trees2)
 6. [Graphs](#graphs)
-7. [Recursion and Dynamic Programming](#recursionanddynamicprogramming)
+7. [Dynamic Programming](#recursionanddynamicprogramming)
 8. [Topological and Heap Sort](#topologicalandheapsort)
 
 # Arrays <a name="arrays"></a> :dolphin:
@@ -624,6 +624,11 @@ public:
 3. [Leetcode Problem 99: Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/)
 4. [Leetcode Problem 145: Binary Tree Postorder Traversal](https://leetcode.com/problems/binary-tree-postorder-traversal/)
 5. [Leetcode Problem 114: Flatten Binary Tree to Linked List](https://leetcode.com/problems/flatten-binary-tree-to-linked-list/)
+
+# Dynamic Programming <a href="recursionanddynamicprogramming"></a>
+<p>Dynamic Programming is a problem solving technique where we solve hard problems by building the solution from smaller ones while trying to satisfy some optimization criterion. There are two key components that make up a dynamic programming problem: overlapping subproblems and optimal substructure. This sounds a lot fancier than it really is. Overlapping subproblems means that the overall problem can be solved by breaking down the problem into sub-problems and the solution can be built up using the solutions to these sub-problems. The optimal sub-structure states that the solution to the sub-problems are optimal according to our optimization critera and the solution to the overall problem that is built using these solutions will also, thus, be optimal according to our optimization criterea. The core idea of Dynamic Programming is to avoid repeated work by remembering partial results and this concept finds it application in a lot of real life situations. Let us understand this technique using the examples shown below.</p>
+
+<p align="center"><img src="" width="50%" height=50%></p>
 
 # Topological and Heap Sort <a href="topologicalandheapsort"></a> :palm_tree:
 ## Topological Sort :earth_americas:
