@@ -625,7 +625,7 @@ public:
 4. [Leetcode Problem 145: Binary Tree Postorder Traversal](https://leetcode.com/problems/binary-tree-postorder-traversal/)
 5. [Leetcode Problem 114: Flatten Binary Tree to Linked List](https://leetcode.com/problems/flatten-binary-tree-to-linked-list/)
 
-# Dynamic Programming <a href="recursionanddynamicprogramming"></a>
+# Dynamic Programming <a name="recursionanddynamicprogramming"></a>
 <p>Dynamic Programming is a problem solving technique where we solve hard problems by building the solution from smaller ones while trying to satisfy some optimization criterion. There are two key components that make up a dynamic programming problem: <b>overlapping subproblems</b> and <b>optimal substructure</b>. This sounds a lot fancier than it really is. Overlapping subproblems means that the overall problem can be solved by breaking down the problem into sub-problems and the solution can be built up using the solutions to these sub-problems. The optimal sub-structure states that the solution to the sub-problems are optimal according to our optimization critera and the solution to the overall problem that is built using these solutions will also, thus, be optimal according to our optimization criterea. The core idea of Dynamic Programming is to avoid repeated work by remembering partial results and this concept finds it application in a lot of real life situations. Let us understand this technique using the examples shown below.</p>
 
 <p align="center"><img src="images/dynamicprogrammingmeme.PNG" width="50%" height=50%></p>
@@ -676,7 +676,35 @@ public:
 };
 ```
 
-# Topological and Heap Sort <a href="topologicalandheapsort"></a> :palm_tree:
+<p>The previous two problems demonstrated that dynamic programming can be used to count the number of ways to achieve a certain goal. Let us take a look at a special class of DP problems known as knapsack problems. Consider leetcode problem <a href="https://leetcode.com/problems/partition-equal-subset-sum/submissions/">416</a>.</p>
+
+<p align="center"><img src="images/p416.PNG" width=50% height="50%"></p>
+
+<p>The main idea behind knapsack problems is that you have a target and you have to pick a subset of a set of elements that will help you achive the target. Sometimes, there is an optimization criteria, i.e. you would want to maximize or minimize some metric while reaching that target. If there isn't one, as in this case, it is known as a 0-1 Knapsack Problem. This problem is equivalent to asking the question, is there a subset of the numbers that sums up to half the total sum of all the numbers in the array. If there is, then it is implicit that the remaining half will sum to the total sum - half the total sum which is again half the total sum of all the numbers in the array. So the target is sum of the numbers / 2. Once we have established the target, we go through all the elements and check if there is a subset of these elements that sums up to k where 1 <= k <= target. The sub-structure here is that for each element that we add to the sub-set, we ask if adding it will make the numbers in the sub-set sum up to some k if we include it or not. The time complexity of this algorithm is O(NS) where S is the sum of the numbers in the vector and N is the size of the vector.</p>
+
+```cpp
+class Solution {
+public:
+    bool canPartition(vector<int>& nums) {
+        int sum = 0;
+        for(int i = 0; i < nums.size(); i++) sum += nums[i];
+        if(sum % 2 != 0) return false;
+        int target = sum / 2;
+        vector<vector<bool>> dp(nums.size()+1, vector<bool>(target+1, false));
+        for(int i = 0; i <= nums.size(); i++) dp[i][0] = true;
+        for(int i = 1; i <= nums.size(); i++){
+            for(int j = 1; j <= target; j++){
+                if(j-nums[i-1] >= 0){
+                    dp[i][j] = dp[i-1][j-nums[i-1]] || dp[i-1][j];
+                }
+            }
+        }
+        return dp[nums.size()][target];
+    }
+};
+```
+
+# Topological and Heap Sort <a name="topologicalandheapsort"></a> :palm_tree:
 ## Topological Sort :earth_americas:
 <p>Topological sort is a sorting technique that can be applied on elements with some precedence order associated with each element. There is, however, an important caveat concerned with topological sort: the elements which can be topologically sorted have form a Directed Acyclic Graph. We will examine Directed Acyclic Graphs in the upcoming section, but just so that you don't lose sight of our goal of finding a precedence order for elements, we can only determine precedence order only if there are no cyclic dependencies. For example, if we state that an element A comes before element B, and element B comes before element C then if A, B and C can be topologically sorted, C cannot come before A.</p>
 
