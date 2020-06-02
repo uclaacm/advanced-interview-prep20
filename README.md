@@ -704,6 +704,13 @@ public:
 };
 ```
 
+## Practice :muscle:
+1. [Leetcode Problem 10: Regular Expression Matching](https://leetcode.com/problems/regular-expression-matching/)
+2. [Leetcode Problem 1203: Sort Items By Groups Respecting Dependencies](https://leetcode.com/problems/sort-items-by-groups-respecting-dependencies/)
+3. [Leetcode Problem 215: Kth Largest Element In An Array](https://leetcode.com/problems/kth-largest-element-in-an-array/)
+4. [Leetcode Problem 23: Merge K Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/)
+5. [Leetcode Problem 210: Course Schedule II](https://leetcode.com/problems/course-schedule-ii/)
+
 # Topological and Heap Sort <a name="topologicalandheapsort"></a> :palm_tree:
 ## Topological Sort :earth_americas:
 <p>Topological sort is a sorting technique that can be applied on elements with some precedence order associated with each element. There is, however, an important caveat concerned with topological sort: the elements which can be topologically sorted have form a Directed Acyclic Graph. We will examine Directed Acyclic Graphs in the upcoming section, but just so that you don't lose sight of our goal of finding a precedence order for elements, we can only determine precedence order only if there are no cyclic dependencies. For example, if we state that an element A comes before element B, and element B comes before element C then if A, B and C can be topologically sorted, C cannot come before A.</p>
