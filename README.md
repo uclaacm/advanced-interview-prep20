@@ -626,9 +626,55 @@ public:
 5. [Leetcode Problem 114: Flatten Binary Tree to Linked List](https://leetcode.com/problems/flatten-binary-tree-to-linked-list/)
 
 # Dynamic Programming <a href="recursionanddynamicprogramming"></a>
-<p>Dynamic Programming is a problem solving technique where we solve hard problems by building the solution from smaller ones while trying to satisfy some optimization criterion. There are two key components that make up a dynamic programming problem: overlapping subproblems and optimal substructure. This sounds a lot fancier than it really is. Overlapping subproblems means that the overall problem can be solved by breaking down the problem into sub-problems and the solution can be built up using the solutions to these sub-problems. The optimal sub-structure states that the solution to the sub-problems are optimal according to our optimization critera and the solution to the overall problem that is built using these solutions will also, thus, be optimal according to our optimization criterea. The core idea of Dynamic Programming is to avoid repeated work by remembering partial results and this concept finds it application in a lot of real life situations. Let us understand this technique using the examples shown below.</p>
+<p>Dynamic Programming is a problem solving technique where we solve hard problems by building the solution from smaller ones while trying to satisfy some optimization criterion. There are two key components that make up a dynamic programming problem: <b>overlapping subproblems</b> and <b>optimal substructure</b>. This sounds a lot fancier than it really is. Overlapping subproblems means that the overall problem can be solved by breaking down the problem into sub-problems and the solution can be built up using the solutions to these sub-problems. The optimal sub-structure states that the solution to the sub-problems are optimal according to our optimization critera and the solution to the overall problem that is built using these solutions will also, thus, be optimal according to our optimization criterea. The core idea of Dynamic Programming is to avoid repeated work by remembering partial results and this concept finds it application in a lot of real life situations. Let us understand this technique using the examples shown below.</p>
 
 <p align="center"><img src="images/dynamicprogrammingmeme.PNG" width="50%" height=50%></p>
+
+<p>The two most important step while solving a DP problem is finding a recurrance relation i.e. what is the equation that relates the solution to a larger problem to the solutions of smaller subproblems and identifying the solutions to the base case, i.e. what is the solution to the problem in the simplest case. This serves as a starting point to build our solution. Once we identify these steps, it is easy to build the required solution ground up. Let us work with Leetcode problem <a href="https://leetcode.com/problems/climbing-stairs/">70</a>.</p>
+
+<p align="center"><img src="images/p70.PNG" width="50%" height="50%"></p>
+
+<p>Well, let us work through the two key steps when solving any DP problem. What would the recurrance relation be? Well to get to the ith step, we could either get to it from the i-1th step by climbing a single step or we could get to it from the i-2th step by climbing two steps. Since DP problems guarantee optimal sub-structure, the number of ways to get to the ith step is the sum of the number of ways to get to the i-1th step and the i-2th step. And for the base cases, the solution is quite intuitive. For the first step, there is exactly one way to get to it and for the second step, there are exactly two ways to get to it. Now we just build our solution from the ground up as shown in the code below! The time complexity of the algorithm is O(N) where N is the number of stairs.</p>
+
+```cpp
+class Solution {
+public:
+    int climbStairs(int n) {
+        if(n == 0 || n == 1) return n;
+        vector<int> dp(n+1, 0);
+        dp[0] = 0;
+        dp[1] = 1;
+        dp[2] = 2;
+        for(int i = 3; i <= n; i++){
+            dp[i] = dp[i-1] + dp[i-2];
+        }
+        return dp[n];
+    }
+};
+```
+
+<p>Using the dp array to store results in the previous example is known as tabulation. A data-structure (often a single or multi-dimensional vector/list) allows us the cache results to smaller sub-problems and build the solutions to the larger problems using these results. Let us take a look at an example of a problem with multi-dimensional tabulation. Consider Leetcode problem <a href="https://leetcode.com/problems/unique-paths/">62</a>.</p>
+
+<p align="center"><img src="images/p62.PNG" width="50%" height="50%"></p>
+
+<p>Once again, the two most important steps in DP! What is our recurrance relation? Well its very similar to the previous example, except now we are moving in two dimensions (i.e. right and down). So in order to get to a particular cell (i,j), we could get to it from (i-1, j) by moving one step down or we could get to it from (i, j-1) by moving one step to the right. So the number of ways to get to cell (i,j) would be the number of ways to get to cell (i-1,j) + the number of ways to get to cell (i,j-1). And what would the base cases be? The number of ways we can get to cells where we cannot apply this recurrance relation because we would go out of bounds i.e. the first row and the first column. Note that the number of ways to get to any cell in the first row would be 1 since we can get to it only from the cell to its left and the number of ways that we can get to any cell in the first column would be 1 since the only way to get to it would be from the cell above it.</p>
+
+```cpp
+class Solution {
+public:
+    int uniquePaths(int m, int n) {
+        vector<vector<int>> dp(m+1, vector<int>(n+1));
+        for(int i = 0; i <= m; i++) dp[i][1] = 1;
+        for(int i = 0; i <= n; i++) dp[1][i] = 1;
+        for(int i = 2; i <= m; i++){
+            for(int j = 2; j <= n; j++){
+                dp[i][j] = dp[i-1][j] + dp[i][j-1];
+            }
+        }
+        return dp[m][n];
+    }
+};
+```
 
 # Topological and Heap Sort <a href="topologicalandheapsort"></a> :palm_tree:
 ## Topological Sort :earth_americas:
